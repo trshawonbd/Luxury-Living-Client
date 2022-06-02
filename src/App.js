@@ -4,9 +4,9 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Routes, Route, Link } from "react-router-dom";
 import Home from './Pages/Homepage/Home/Home';
-import About from './Pages/Homepage/About/About';
-import Contact from './Pages/Homepage/Contact/Contact';
-import Navbar from './Pages/Homepage/Navbar/Navbar';
+import About from './Pages/About/About';
+import Contact from './Pages/Contact/Contact';
+import Navbar from './Pages/Shared/Navbar/Navbar';
 
 function App() {
   return (
