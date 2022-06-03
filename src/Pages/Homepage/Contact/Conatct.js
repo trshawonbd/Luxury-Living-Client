@@ -19,7 +19,7 @@ const Conatct = () => {
             </div>
 
             <div className='flex justify-center items-center'>
-                <div className="card w-full bg-base-100 shadow-xl">
+                <div className="card w-full bg-base-100 ">
                     <div className="card-body">
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <div>
