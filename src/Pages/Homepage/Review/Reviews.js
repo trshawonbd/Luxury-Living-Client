@@ -37,7 +37,7 @@ const Reviews = () => {
         ]
     };
     return (
-        <div className='mx-8'>
+        <div className='m-8'>
             <div className='text-center py-8'>
                 <h3 className='text-3xl font-bold'>Testimonials</h3>
             </div>
