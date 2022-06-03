@@ -7,6 +7,8 @@ import Home from './Pages/Homepage/Home/Home';
 import About from './Pages/About/About';
 import Contact from './Pages/Contact/Contact';
 import Navbar from './Pages/Shared/Navbar/Navbar';
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
 
 function App() {
   return (
