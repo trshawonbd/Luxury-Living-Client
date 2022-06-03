@@ -118,7 +118,7 @@ const Registarion = () => {
                     {SignInErrorMessage}
                     <input className='btn btn-primary w-full max-w-xs text-white' type="submit" value='Sign Up' />
                 </form>
-                <p><small>Already Have an Account? <Link className='text-secondary' to='/login'>Login</Link></small></p>
+                <p><small>Already Have an Account? <Link className='text-primary font-bold' to='/login'>Login</Link></small></p>
                 <div className="divider">OR</div>
                 <button
                     onClick={() => signInWithGoogle()}
