@@ -1,8 +1,9 @@
 import React from 'react';
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
+import useToken from '../../../Hooks/useToken';
 import Loading from '../../Shared/Loading/Loading';
 
 const Registarion = () => {
@@ -18,8 +19,10 @@ const Registarion = () => {
       ] = useCreateUserWithEmailAndPassword(auth);
 
       const navigate = useNavigate();
+      let location = useLocation();
+       let from = location.state?.from?.pathname || "/"; 
 
-      /*const [token] = useToken(user || gUser); */
+      const [token] = useToken(user || gUser); 
 
     if (loading || gLoading || updating){
         return <Loading></Loading>
@@ -31,9 +34,9 @@ const Registarion = () => {
       SignInErrorMessage = <p className='text-red-500'><small>{error?.message || gError?.message || updateError?.message}</small></p>
     }
 
-    if (user) {
+    if (token) {
       console.log(user || gUser);
-      navigate('/appointment');
+       navigate(from, { replace: true }); 
   }
 
     const onSubmit = async data => {
