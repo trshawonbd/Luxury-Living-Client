@@ -1,17 +1,30 @@
+import { signOut } from 'firebase/auth';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { Link, useNavigate } from 'react-router-dom';
+import auth from '../../../firebase.init';
 import logo from '../../../Image_Icon/Group 33069.png';
 
 
-const menuItems = <>
+const Navbar = () => {
+    const [user, loading, error] = useAuthState(auth);
+    const navigate = useNavigate();
+
+    const logout = () => {
+        signOut(auth);
+        localStorage.removeItem('accessToken');
+        navigate('/');
+      };
+
+    const menuItems = <>
     <li><Link to='/'>Home</Link></li>
     <li><Link to='/about'>About us</Link></li>
     <li><Link to='/contact'>Contact</Link></li>
-    <li><Link to='/login'>Login</Link></li>
+    <li>{user ? <button onClick={logout} className="btn btn-ghost">Sign Out</button> : <Link to = "/login">Login</Link>}</li>
 
 </>
 
-const Navbar = () => {
+
     return (
         <div className='mx-6'>
             <div className="navbar bg-base-100">
@@ -36,7 +49,7 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <a className="btn">Get started</a>
+                    <a className="btn btn-primary text-white">Get started</a>
                 </div>
             </div>
         </div>

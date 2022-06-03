@@ -36,6 +36,10 @@ const Login = () => {
 
       let SignInErrorMessage;
 
+      if(user || gUser){
+          navigate('/')
+      }
+
       if(error || gError){
         SignInErrorMessage = <p className='text-red-500'><small>{error?.message || gError?.message}</small></p>
       }
@@ -79,7 +83,7 @@ const Login = () => {
 
                         <div className="form-control w-full max-w-xs">
                             <label className="label">
-                                <span className="label-text">Email</span>
+                                <span className="label-text">Password</span>
                             </label>
                             <input type="password"
                                 placeholder="Your Password"
@@ -103,7 +107,7 @@ const Login = () => {
                         {SignInErrorMessage}
                         <input className='btn btn-primary w-full max-w-xs text-white' type="submit" value='Login' />
                     </form>
-                    <p><small>New to doctors portal? <Link className='text-secondary' to='/signup'>Create New Account</Link></small></p>
+                    <p><small>New to doctors portal? <Link className='text-secondary' to='/register'>Create New Account</Link></small></p>
                     <div className="divider">OR</div>
                     <button
                         onClick={() => signInWithGoogle()}
