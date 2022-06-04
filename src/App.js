@@ -15,6 +15,7 @@ import Registarion from './Pages/Authentication/Registration/Registarion';
 import Dashboard from './Pages/Dashboard/Dashboard/Dashboard';
 import RequireAuth from './Pages/Authentication/RequireAuth/RequireAuth';
 import AddService from './Pages/Dashboard/Admin/AddService/AddService';
+import Services from './Pages/AllServices/Services';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home></Home>}></Route>
         <Route path='/home' element={<Home></Home>}></Route>
+        <Route path='/services' element={<Services></Services>}></Route>
         <Route path='/dashboard' element={
           <RequireAuth>
 
