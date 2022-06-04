@@ -1,5 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 import './AddService.css';
 
 const AddService = () => {
@@ -26,8 +27,33 @@ const AddService = () => {
             if(result.success){
                 const img = result.data.url;
                 const service = {
-                    
+                    serviceName: data.serviceName,
+                    picture: img,
+                    price : data.price,
+                    description: data.description
                 }
+
+
+                fetch(`http://localhost:5000/service`,{
+                    method:'POST',
+                    headers:{
+                        'content-type' : 'application/json',
+                        authorization: `Bearer ${localStorage.getItem('accessToken')}`
+                    },
+                    body: JSON.stringify(service)
+                })
+                .then(res => res.json())
+                .then(inserted => {
+                    console.log('inserted', inserted);
+
+                    if(inserted.insertedId){
+                        toast.success(`Service is added`)
+                    }
+
+                    else{
+                        toast.error('Something went wrong')
+                    }
+                })
             }
         })
 
@@ -37,7 +63,7 @@ const AddService = () => {
             Here is the place where you can add a service
 
             <div className='m-6'>
-                <div class="card w-full bg-slate-100 text-primary-content">
+                <div class="card w-full bg-slate-100 ">
                     <div class="card-body">
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <div className='flex gap-4'>
@@ -74,6 +100,31 @@ const AddService = () => {
                                     />
                                     <label className="label">
                                         {errors.image?.type === 'required' && <span className="label-text-alt text-red-500">{errors.image.message}</span>}
+                                    </label>
+                                </div>
+                            </div>
+                            <div>
+                            <div className="form-control w-full max-w-xs">
+                                    <label className="label">
+                                        <span className="label-text">Price</span>
+                                    </label>
+                                    <input type="number"
+                                        placeholder="Price"
+                                        className="input input-bordered w-full max-w-xs"
+                                        {...register("price", {
+                                            required: {
+                                                value: true,
+                                                message: 'price is required'
+                                            },
+                                                min: {
+                                                  value: 0,
+                                                  message: 'Value must be more than 0'
+                                                }
+                                        })}
+                                    />
+                                    <label className="label">
+                                        {errors.price?.type === 'required' && <span className="label-text-alt text-red-500">{errors.price.message}</span>}
+                                        {errors.price?.type === 'min' && <span className="label-text-alt text-red-500">{errors.price.message}</span>}
                                     </label>
                                 </div>
                             </div>
