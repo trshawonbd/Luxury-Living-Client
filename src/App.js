@@ -16,6 +16,7 @@ import Dashboard from './Pages/Dashboard/Dashboard/Dashboard';
 import RequireAuth from './Pages/Authentication/RequireAuth/RequireAuth';
 import AddService from './Pages/Dashboard/Admin/AddService/AddService';
 import Services from './Pages/AllServices/Services';
+import ServiceDetaills from './Pages/AllServices/ServiceDetaills';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path='/' element={<Home></Home>}></Route>
         <Route path='/home' element={<Home></Home>}></Route>
         <Route path='/services' element={<Services></Services>}></Route>
+        <Route path='/serviceDetails/:id' element={<ServiceDetaills></ServiceDetaills>}></Route>
         <Route path='/dashboard' element={
           <RequireAuth>
 
